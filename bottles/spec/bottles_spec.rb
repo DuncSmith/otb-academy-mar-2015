@@ -37,4 +37,10 @@ describe "singing 99 bottles of beer" do
   it "can sing the whole song" do
     expect( song.sing ).to eq( song.verses(99, 0) )
   end
+
+  it "the 24th is a case" do
+    expected = "1 case of beer on the wall, 1 case of beer.\nTake one bottle down and pass it around, 23 bottles of beer on the wall.\n"
+
+    expect( song.verse(24) ).to eq( expected)
+  end
 end
