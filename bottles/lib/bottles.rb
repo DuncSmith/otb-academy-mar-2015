@@ -1,12 +1,10 @@
 class BottleNumber
 
   def self.for(number_of_bottles)
-    case number_of_bottles
-    when 0
-      BottleZero.new(number_of_bottles)
-    when 1
-      BottleOne.new(number_of_bottles)
-    else
+    begin
+      klass = Object.const_get("Bottle#{number_of_bottles}")
+      klass.new(number_of_bottles)
+    rescue NameError
       BottleNumber.new(number_of_bottles)
     end
   end
@@ -45,7 +43,7 @@ class BottleNumber
   
 end
 
-class BottleZero < BottleNumber
+class Bottle0 < BottleNumber
   def count_bottles
     "no more"
   end
@@ -59,7 +57,7 @@ class BottleZero < BottleNumber
   end
 end
 
-class BottleOne < BottleNumber
+class Bottle1 < BottleNumber
   def pronoun
     "it"
   end
@@ -68,6 +66,20 @@ class BottleOne < BottleNumber
     "bottle"
   end
 end
+
+class Bottle24 < BottleNumber
+  def count_bottles
+    1.to_s
+  end
+
+  def container
+    "case"
+  end
+  def pronoun
+    "one bottle"
+  end
+end
+
 
 
 class Bottles
