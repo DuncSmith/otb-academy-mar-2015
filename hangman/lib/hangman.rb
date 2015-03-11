@@ -4,5 +4,15 @@ class Game
   def initialize(word)
     @answer = word
     @lives = 15
+    @lguesses = []
   end
+
+  def lguess(letter)
+    @lguesses << letter
+    @lives -= 1 if !@answer.include?(letter)
+  end
+
+  def win?
+  end
+
 end
