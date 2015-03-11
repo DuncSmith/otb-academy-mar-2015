@@ -59,5 +59,19 @@ RSpec.describe "A game of hangman" do
         game.wguess("ruby")
         expect( game.win? ).to eq(true)
       end
+
+      it "should return 0 lives if consumed" do
+        15.times { game.lguess("a") }
+        expect( game.lives ).to eq(0)
+      end
+
+      it "should respond to game_over?" do
+        expect( game.game_over? ).to eq(false)
+      end
+
+      it "game_over should be true if no more lives" do
+        15.times { game.lguess("a") }
+        expect( game.game_over? ).to eq(true)
+      end
     end
 end
