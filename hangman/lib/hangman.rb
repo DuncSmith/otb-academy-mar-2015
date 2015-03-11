@@ -21,4 +21,8 @@ class Game
   def adjust_life(letter)
     @lives -= 1 if !@answer.include?(letter)
   end
+
+  def progress
+    @answer.gsub(/[^#{@lguesses.uniq.join}]/, "_")
+  end
 end
