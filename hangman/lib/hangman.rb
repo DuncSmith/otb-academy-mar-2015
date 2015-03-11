@@ -4,7 +4,7 @@ class Game
   def initialize(word)
     @answer = word
     @lives = 15
-    @lguesses = []
+    @lguesses = [" "]
   end
 
   def lguess(letter)
@@ -13,6 +13,7 @@ class Game
   end
 
   def win?
+    @answer.gsub(/#{@lguesses}/, "").size == 0
   end
 
 end
