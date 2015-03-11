@@ -11,11 +11,8 @@ RSpec.describe "A game of hangman" do
       let(:game) { Game.new }
 
       it "should accept a answer" do
-        skip
-      end
-
-      it "will not let us guess if an answer has not yet been given" do
-        skip
+        game.answer = "ruby"
+        expect( game.answer ).to eq("ruby")
       end
 
       it "tell us the number of lives remaining" do
