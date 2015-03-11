@@ -10,7 +10,7 @@ class Game
 
   def lguess(letter)
     @lguesses << letter
-    @lives -= 1 if !@answer.include?(letter)
+    adjust_life(letter)
   end
 
   def win?
@@ -18,4 +18,7 @@ class Game
     @answer.gsub(/#{filter}/, "").size == 0
   end
 
+  def adjust_life(letter)
+    @lives -= 1 if !@answer.include?(letter)
+  end
 end
