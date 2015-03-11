@@ -16,11 +16,7 @@ RSpec.describe "A game of hangman" do
       end
 
       it "tell us the number of lives remaining" do
-        skip
-      end
-
-      it "will not let us guess if no more lives available" do
-        skip
+        expect( game.lives ).to eq(15)
       end
 
       it "will not let us guess if an answer has not yet been given" do
