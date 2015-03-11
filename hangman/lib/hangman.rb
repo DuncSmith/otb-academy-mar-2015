@@ -1,10 +1,11 @@
 class Game
+  attr_reader :lguesses
   attr_accessor :answer, :lives
 
   def initialize(word)
     @answer = word
     @lives = 15
-    @lguesses = [" "]
+    @lguesses = []
   end
 
   def lguess(letter)
@@ -13,7 +14,8 @@ class Game
   end
 
   def win?
-    @answer.gsub(/#{@lguesses}/, "").size == 0
+    filter = @lguesses == [] ? " " : @lguesses
+    @answer.gsub(/#{filter}/, "").size == 0
   end
 
 end

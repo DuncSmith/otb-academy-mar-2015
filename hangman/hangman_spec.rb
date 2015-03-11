@@ -36,7 +36,7 @@ RSpec.describe "A game of hangman" do
       end
       it "can tell us the guesses so far" do
         game.lguess("r")
-        expect( games.lguesses ).to eq(["r"])
+        expect( game.lguesses ).to eq(["r"])
       end
 
       it "can show us the game progress" do
