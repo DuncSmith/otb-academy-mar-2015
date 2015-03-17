@@ -12,12 +12,12 @@ end
 
 Given(/^James is at "(.*?)"$/) do |location|
   @james = Person.new(the_network)
-  @james.location = @locations[location]
+  @james.location = Location.new(@locations[location])
 end
 
 Given(/^Chris is at "(.*?)"$/) do |location|
   @chris = Person.new(the_network)
-  @chris.location = @locations[location]
+  @chris.location = Location.new(@locations[location])
 end
 
 When(/^Chris shouts "(.*?)"$/) do |message|
