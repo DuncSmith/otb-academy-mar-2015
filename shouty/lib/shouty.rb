@@ -32,9 +32,14 @@ class Network
 
   def broadcast(message, location)
     @people.each do |person|
-      person.hear(message) if person.within_range?(location)
+      person.hear(message) if person.within_range?(location) && valid_message?(message)
     end
   end
+
+  def valid_message?(message)
+    message.length <= 140
+  end
+
 end
 
 class Location

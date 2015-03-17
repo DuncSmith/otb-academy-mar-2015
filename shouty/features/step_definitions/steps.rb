@@ -5,6 +5,13 @@ module ShoutyDomain
 end
 World(ShoutyDomain)
 
+
+Given(/^the following geolocations:$/) do |locations|
+  p locations.hashes
+  # table is a Cucumber::Ast::Table
+   pending # express the regexp above with the code you wish you had
+end
+
 Given(/^"(.*?)" is at "(.*?)"$/) do |location, lat_long|
   @locations ||= {}
   @locations[location] = lat_long.split(",")
@@ -25,6 +32,11 @@ When(/^Chris shouts "(.*?)"$/) do |message|
   @chris.shout(@the_shout)
 end
 
+When(/^Chris shouts$/) do |message|
+  @the_shout = message
+  @chris.shout(@the_shout)
+end
+
 Then(/^James doesn't hear Chris' shout$/) do
   expect(@james.heard_messages).not_to include(@the_shout)
 end
@@ -32,3 +44,5 @@ end
 Then(/^James hears Chris' shout$/) do
   expect(@james.heard_messages).to include(@the_shout)
 end
+
+
