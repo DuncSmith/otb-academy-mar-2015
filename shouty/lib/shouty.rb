@@ -45,20 +45,15 @@ class Location
   end
 
   def distance_to(another_location)
-    lat2 = another_location.lat
-    lon2 = another_location.lon
+    @lat2 = another_location.lat
+    @lon2 = another_location.lon
 
-    dLat = deg2rad(lat2-@lat)
-    dLon = deg2rad(lon2-@lon)
+    distance = earth_radius * haversine_formula
 
-    a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(deg2rad(@lat)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon/2) * Math.sin(dLon/2)
-
-    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-    distance = earth_radius * c
     return distance.round(2)
   end
+
+  private
 
   def deg2rad(deg)
     deg * (Math::PI/180)
@@ -66,6 +61,23 @@ class Location
 
   def earth_radius
     6371
+  end
+
+  def delta_lat
+    deg2rad(@lat2-@lat)
+  end
+
+  def delta_lon
+    deg2rad(@lon2-@lon)
+  end
+
+  def haversine_formula
+    a = Math.sin(delta_lat/2) * Math.sin(delta_lat/2) +
+        Math.cos(deg2rad(@lat)) * Math.cos(deg2rad(@lat2)) *
+        Math.sin(delta_lon/2) * Math.sin(delta_lon/2)
+
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    return c
   end
 
 
